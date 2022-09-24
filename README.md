@@ -37,3 +37,41 @@ do {
    print(error.localizedDescription)
 }
 ```
+
+***Switching View states with enums***
+
+```
+enum LoadingState {
+    case loading, success, failed
+}
+
+struct LoadingView: View {
+    var body: some View {
+        Text("Loading...")
+    }
+}
+
+struct SuccessView: View {
+    var body: some View {
+        Text("Success!")
+    }
+}
+
+struct FailedView: View {
+    var body: some View {
+        Text("Failed.")
+    }
+}
+```
+
+All this code can then be used in ContentView.
+
+```
+if loadingState == .loading {
+    LoadingView()
+} else if loadingState == .success {
+    SuccessView()
+} else if loadingState == .failed {
+    FailedView()
+}
+```
